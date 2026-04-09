@@ -50,14 +50,13 @@ body {
 }
 
 .nav-playlist button, .nav-podcast button {
-    background-color: #fff;
-    color: #000;
+    font-weight: bold;
     border: none;
     padding: 10px 12px;
     margin-top: 16px;
     cursor: pointer;
     font-size: 12px;
-    border-radius: 12px;
+    border-radius: 32px;
 }
 
 .nav-playlist p, .nav-podcast p {
@@ -69,20 +68,139 @@ body {
 }
 
 .nav-footer a {
+    position: relative;
     color: #a7a7a7;
     text-decoration: none;
     font-size: 12px;
     margin-right: 12px;
+    top: -90px;
     margin-bottom: 8px;
 }
 
 .nav-lang-button {
+    position: relative;
+    top: -70px;
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
     padding: 8px 12px;
-    margin-top: 16px;
+    margin-top: 10px;
     cursor: pointer;
     border-radius: 20px;
+    width: 285px;
 
+}
+
+main {
+    padding: 24px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #242424;
+    padding: 13px 20px;
+    border-radius: 20px;
+    width: 20%;
+    
+}
+
+.search-bar input {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.search-bar i {
+    font-size: 25px;
+    display: flex;
+    margin-right: auto;
+    color: #ffffff81;
+}
+
+.artists-grid, .albums-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    padding: 16px;
+    margin-bottom: 40px;
+}
+
+.artists-card, .album-card{
+    background-color: #181818;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.artists-card:hover, .album-card:hover{
+    background-color: #282828;
+}
+
+.artists-card img, .album-card img {
+    width: 100%;
+    max-height: 70%;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+
+.artist-card h3, .album-card h3 {
+   font-size: 12px;
+   
+}
+
+.artist-card p, .album-card p {
+    font-size: 10px;
+    color: #B7B3B6;
+}
+
+.content {
+    margin-top: 40px;
+}
+
+.content h2 {
+    margin-bottom: 10px;
+}
+
+.banner {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 10px 10px 10px 10px;
+    background: linear-gradient(90deg, #AF2896, #509BF5);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+}
+
+.banner h2 {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.banner p {
+    margin-top: 2px;
+    font-size: 15px;
+}
+
+.banner button {
+    margin-left: auto;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #fff;
+    padding: 17px 27px;
+    border-radius: 32px;
+    border: none;
+    cursor: pointer;
 }
