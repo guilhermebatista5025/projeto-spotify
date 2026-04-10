@@ -1,6 +1,7 @@
 ## 🎧 Spotify Clone
 
 Projeto desenvolvido com foco em praticar fundamentos de desenvolvimento web, recriando a interface de um player estilo Spotify utilizando **HTML, CSS e JavaScript**.
+link do site: https://projeto-spotify-frontend-eta.vercel.app/
 
 ## 🚀 Sobre o Projeto
 
