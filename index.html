@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify - Guilherme</title>
-    <link rel="icon" type="image/spotify_174872__1_-removebg-preview.ico" href="img/spotify_174872__1_-removebg-preview.ico">
+    <link rel="icon" type="image/ico" href="img/spotify.ico">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -20,7 +19,7 @@
         </div>
 
         <nav class="top-nav__center">
-            <a href="#" class="top-nav__home-btn" title="Início">
+            <a href="#" class="top-nav__home-btn" title="Início" id="homeBtn">
                 <i class="fa-solid fa-house"></i>
             </a>
             <div class="top-nav__search">
@@ -93,40 +92,148 @@
         <!-- ========== MAIN CONTENT ========== -->
         <main class="main-content" id="mainContent">
 
-            <!-- MÚSICAS EM ALTA -->
-            <section class="content-section" id="musicasEmAltaSection">
-                <div class="section-header">
-                    <h2>Músicas em alta</h2>
-                    <a href="#" class="section-header__more">Mostrar tudo</a>
-                </div>
-                <div class="cards-row" id="musicasGrid">
-                    <!-- preenchido via JS -->
-                </div>
-            </section>
+            <!-- ===== HOME VIEW ===== -->
+            <div id="homeView">
+                <!-- MÚSICAS EM ALTA -->
+                <section class="content-section" id="musicasEmAltaSection">
+                    <div class="section-header">
+                        <h2>Músicas em alta</h2>
+                        <a href="#" class="section-header__more">Mostrar tudo</a>
+                    </div>
+                    <div class="cards-row" id="musicasGrid"></div>
+                </section>
 
-            <!-- ARTISTAS POPULARES -->
-            <section class="content-section" id="artistasSection">
-                <div class="section-header">
-                    <h2>Artistas populares</h2>
-                    <a href="#" class="section-header__more">Mostrar tudo</a>
-                </div>
-                <div class="cards-row" id="artistasGrid">
-                    <!-- preenchido via JS -->
-                </div>
-            </section>
+                <!-- ARTISTAS POPULARES -->
+                <section class="content-section" id="artistasSection">
+                    <div class="section-header">
+                        <h2>Artistas populares</h2>
+                        <a href="#" class="section-header__more">Mostrar tudo</a>
+                    </div>
+                    <div class="cards-row" id="artistasGrid"></div>
+                </section>
 
-            <!-- SINGLES E ÁLBUNS -->
-            <section class="content-section" id="albumsSection">
-                <div class="section-header">
-                    <h2>Singles e álbuns que todo mundo gosta</h2>
-                    <a href="#" class="section-header__more">Mostrar tudo</a>
+                <!-- SINGLES E ÁLBUNS -->
+                <section class="content-section" id="albumsSection">
+                    <div class="section-header">
+                        <h2>Singles e álbuns que todo mundo gosta</h2>
+                        <a href="#" class="section-header__more">Mostrar tudo</a>
+                    </div>
+                    <div class="cards-row" id="albumsGrid"></div>
+                </section>
+            </div>
+
+            <!-- ===== ALBUM PAGE VIEW ===== -->
+            <div id="albumView" class="album-view hidden">
+
+                <!-- Cabeçalho do álbum -->
+                <div class="album-view__header">
+                    <button class="album-view__back-btn" id="backBtn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="album-view__cover-wrap">
+                        <img src="" alt="" id="albumViewCover" class="album-view__cover">
+                    </div>
+                    <div class="album-view__meta">
+                        <span class="album-view__type">Álbum</span>
+                        <h1 class="album-view__title" id="albumViewTitle"></h1>
+                        <p class="album-view__artist" id="albumViewArtist"></p>
+                        <p class="album-view__info" id="albumViewInfo"></p>
+                    </div>
                 </div>
-                <div class="cards-row" id="albumsGrid">
-                    <!-- preenchido via JS -->
+
+                <!-- Controles do álbum -->
+                <div class="album-view__controls">
+                    <button class="album-view__play-btn" id="albumPlayBtn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button class="album-view__icon-btn" id="albumShuffleBtn" title="Aleatório">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                    <button class="album-view__icon-btn" title="Favoritar">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <button class="album-view__icon-btn" title="Mais opções">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
                 </div>
-            </section>
+
+                <!-- Cabeçalho da lista -->
+                <div class="track-list-header">
+                    <span class="track-list-header__num">#</span>
+                    <span class="track-list-header__title">Título</span>
+                    <span class="track-list-header__duration"><i class="fa-regular fa-clock"></i></span>
+                </div>
+
+                <!-- Lista de faixas -->
+                <div class="track-list" id="trackList"></div>
+            </div>
 
         </main>
+    </div>
+
+    <!-- ========== PLAYER BAR ========== -->
+    <div class="player-bar" id="playerBar">
+
+        <!-- Lado esquerdo: info da música atual -->
+        <div class="player-bar__left">
+            <div class="player-bar__thumb-wrap">
+                <img src="" alt="" id="playerThumb" class="player-bar__thumb hidden">
+                <div class="player-bar__thumb-placeholder" id="playerThumbPlaceholder">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+            </div>
+            <div class="player-bar__track-info">
+                <span class="player-bar__track-name" id="playerTrackName">—</span>
+                <span class="player-bar__track-artist" id="playerTrackArtist">Escolha uma música</span>
+            </div>
+            <button class="player-bar__like-btn" id="playerLikeBtn" title="Adicionar à Biblioteca">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        </div>
+
+        <!-- Centro: controles + barra de progresso -->
+        <div class="player-bar__center">
+            <div class="player-bar__controls">
+                <button class="player-bar__ctrl-btn" id="playerShuffleBtn" title="Aleatório">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+                <button class="player-bar__ctrl-btn" id="playerPrevBtn" title="Anterior">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button class="player-bar__play-btn" id="playerPlayBtn" title="Play / Pause">
+                    <i class="fa-solid fa-play" id="playerPlayIcon"></i>
+                </button>
+                <button class="player-bar__ctrl-btn" id="playerNextBtn" title="Próxima">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+                <button class="player-bar__ctrl-btn" id="playerRepeatBtn" title="Repetir">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+            </div>
+
+            <div class="player-bar__progress-row">
+                <span class="player-bar__time" id="playerCurrentTime">0:00</span>
+                <div class="player-bar__progress-track" id="progressTrack">
+                    <div class="player-bar__progress-fill" id="progressFill"></div>
+                    <div class="player-bar__progress-thumb" id="progressThumb"></div>
+                </div>
+                <span class="player-bar__time" id="playerDuration">0:00</span>
+            </div>
+        </div>
+
+        <!-- Lado direito: volume -->
+        <div class="player-bar__right">
+            <button class="player-bar__ctrl-btn" id="playerQueueBtn" title="Fila">
+                <i class="fa-solid fa-list"></i>
+            </button>
+            <button class="player-bar__ctrl-btn" id="playerVolumeBtn" title="Volume">
+                <i class="fa-solid fa-volume-high" id="volumeIcon"></i>
+            </button>
+            <div class="player-bar__volume-track" id="volumeTrack">
+                <div class="player-bar__volume-fill" id="volumeFill" style="width:70%"></div>
+                <div class="player-bar__volume-thumb" id="volumeThumb" style="left:70%"></div>
+            </div>
+        </div>
     </div>
 
     <!-- ========== BANNER PREMIUM ========== -->
